@@ -4,10 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.meeting_service.dto.request.LoginRequestDTO;
 import project.meeting_service.dto.request.MeetingAttendanceRequestDTO;
 import project.meeting_service.dto.response.LoginResponseDTO;
@@ -25,6 +22,11 @@ public class AttendeeController {
     public AttendeeController(AttendeeService attendeeService, MeetingService meetingService) {
         this.attendeeService = attendeeService;
         this.meetingService = meetingService;
+    }
+
+    @GetMapping("is-attended")
+    public ResponseEntity<Boolean> isAttended(@RequestParam Integer attendeeId, @RequestParam Integer meetingId) {
+        return ResponseEntity.ok(attendeeService.isAttended(attendeeId, meetingId));
     }
 
 

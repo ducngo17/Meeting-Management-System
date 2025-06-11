@@ -6,4 +6,6 @@ public interface AttendeeService {
     LoginResponseDTO login(String email, String password);
 
     String attendMeeting(Integer attendeeId, Integer meetingId);
+
+    boolean isAttended(Integer attendeeId, Integer meetingId);
 }

@@ -20,7 +20,7 @@ public class CorsConfig {
 //    public CorsFilter corsFilter() {
 //        var urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
 //        var corsConfiguration = new CorsConfiguration();
-//        corsConfiguration.setAllowCredentials(false);
+//        corsConfiguration.setAllowCredentials(true);
 //        corsConfiguration.setAllowedOrigins(List.of("http://localhost:2000"));
 //        corsConfiguration.setAllowedHeaders(List.of(ORIGIN, ACCESS_CONTROL_ALLOW_ORIGIN, CONTENT_TYPE, ACCEPT, AUTHORIZATION, X_REQUESTED_WITH, ACCESS_CONTROL_REQUEST_METHOD, ACCESS_CONTROL_REQUEST_HEADERS));
 //        corsConfiguration.setExposedHeaders(List.of(ORIGIN, ACCESS_CONTROL_ALLOW_ORIGIN, CONTENT_TYPE, ACCEPT, AUTHORIZATION, X_REQUESTED_WITH, ACCESS_CONTROL_REQUEST_METHOD, ACCESS_CONTROL_REQUEST_HEADERS));

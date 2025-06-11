@@ -9,10 +9,10 @@ services:
       POSTGRES_DB: meeting_service
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    networks:
-      - app-network
+#    volumes:
+#      - postgres-data:/var/lib/postgresql/data
+#    networks:
+#      - app-network
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.4.4
@@ -21,8 +21,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "2181:2181"
-    networks:
-      - app-network
+#    networks:
+#      - app-network
 
   kafka:
     image: confluentinc/cp-kafka:7.4.4
@@ -37,8 +37,8 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1 # default is 3, but we use only one broker so need to set it to 1
     depends_on:
       - zookeeper
-    networks:
-      - app-network
+#    networks:
+#      - app-network
 
   backend:
     image: meeting_service_backend
@@ -55,8 +55,8 @@ services:
     depends_on:
       - postgres
       - kafka
-    networks:
-      - app-network
+#    networks:
+#      - app-network
 
   nginx:
     image: nginx:1.28.0-alpine
@@ -66,12 +66,12 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - backend
-    networks:
-      - app-network
+#    networks:
+#      - app-network
 
 
-volumes:
-  postgres-data:
+#volumes:
+#  postgres-data:
 
-networks:
-  app-network:
+#networks:
+#  app-network:

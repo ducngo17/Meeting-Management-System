@@ -1,15 +1,15 @@
-# Sử dụng base image OpenJDK 17
-FROM eclipse-temurin:21-jdk-alpine
+# Use OpenJDK 21 as base image
+FROM openjdk:21
 
-# Tạo thư mục làm việc
-WORKDIR /app
+# Set working directory
+WORKDIR /meeting_service
 
-# Thêm file jar đã build vào image
-ARG JAR_FILE=target/*.jar
+# Copy the built jar file into the image
+ARG JAR_FILE=target/meeting_service-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar
 
-# Expose port (không bắt buộc nhưng tốt khi dùng Swarm/K8s)
+# Expose port 8080
 EXPOSE 8080
 
-# Chạy ứng dụng
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]

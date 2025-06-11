@@ -15,8 +15,11 @@ public class KafkaConsumerService {
     @KafkaListener(topicPattern = "meeting-.*")
     public void listen(String message) {
         // Extract meetingId from message, e.g., "meeting/123/..."
+//        System.out.println("Received message from Kafka: " + message);
+
         String meetingId = extractMeetingId(message);
         messagingTemplate.convertAndSend("/topic/meeting/" + meetingId, message);
+//        System.out.println("Message sent to WebSocket topic: /topic/meeting/" + meetingId);
     }
 
     private String extractMeetingId(String message) {

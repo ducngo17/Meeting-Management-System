@@ -89,6 +89,7 @@ const MeetingDetailPage = () => {
           if (messageType === "request-speaking") {
             const speakingRequestsData = await getAllSpeakingRequests(id);
             setSpeakingRequests(speakingRequestsData);
+            console.log("Updated speaking requests:", speakingRequestsData);
             // Re-check request state after update
             isRequested(attendeeId, id)
               .then((result) => setIsRequesting(result === true))
@@ -102,6 +103,7 @@ const MeetingDetailPage = () => {
               })
             );
             setPolls(pollsWithOptions);
+            console.log("Updated polls:", pollsWithOptions);
           }
         });
       },
@@ -280,7 +282,6 @@ const MeetingDetailPage = () => {
                   </div>
 
                   {/* Options and Results */}
-                  {/* {console.log("Option:", poll.options)} */}
                   <div className="lg:col-span-2">
                     <div className="space-y-3">
                       {poll.options.map((option, index) => {
@@ -295,7 +296,6 @@ const MeetingDetailPage = () => {
                           "bg-purple-500",
                           "bg-orange-500",
                         ];
-                        console.log(option.pollOptionId, option.text, option.numOfVotes, percentage);
                         return (
                           <div key={index} className="flex items-center space-x-6 mb-2">
                             <div className="flex-1">

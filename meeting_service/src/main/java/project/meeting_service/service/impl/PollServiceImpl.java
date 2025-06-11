@@ -112,6 +112,7 @@ public class PollServiceImpl implements PollService {
         if (pollVoteRepostiory.existsByAttendee_AttendeeIdAndPollOption_Poll_PollId(attendeeId, pollId)) {
             throw new IllegalArgumentException("Attendee has already voted in this poll");
         }
+        Poll poll = pollOption.getPoll();
 
         PollVote newPollVote = new PollVote(attendee, pollOption, LocalDateTime.now());
         pollVoteRepostiory.save(newPollVote);
@@ -121,7 +122,6 @@ public class PollServiceImpl implements PollService {
         pollOptionRepository.save(pollOption);
 
         // Update and save poll total votes
-        Poll poll = pollOption.getPoll();
         poll.setTotalVotes(poll.getTotalVotes() + 1);
         pollRepository.save(poll);
 

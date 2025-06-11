@@ -78,6 +78,7 @@ public class SpeakingRequestServiceImpl implements SpeakingRequestService {
         if (isRequest(attendeeId, meetingId)) {
             throw new IllegalArgumentException("This attendee has requested speaking");
         }
+
         SpeakingRequest speakingRequest = new SpeakingRequest(attendee, meeting, LocalDateTime.now());
         speakingRequestRepository.save(speakingRequest);
 

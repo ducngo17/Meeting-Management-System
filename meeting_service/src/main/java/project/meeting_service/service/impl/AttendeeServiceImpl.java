@@ -54,4 +54,17 @@ public class AttendeeServiceImpl implements AttendeeService {
             return "Attended this meeting successfully";
         }
     }
+
+    @Override
+    public boolean isAttended(Integer attendeeId, Integer meetingId) {
+        Optional<Attendee> attendee = attendeeRepository.findById(attendeeId);
+        if (attendee.isEmpty()) {
+            throw new RuntimeException("Attendee not found");
+        }
+        Optional<Meeting> meeting = meetingRepository.findById(meetingId);
+        if (meeting.isEmpty()) {
+            throw new RuntimeException("Meeting not found");
+        }
+        return meetingRepository.isAttend(attendeeId, meetingId) ? true : false;
+    }
 }
